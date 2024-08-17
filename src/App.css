@@ -358,3 +358,10 @@ button.wallet-types{
     box-shadow: 0px 0px 1000px #ff1d74;
   }
 }
+
+@media (max-width: 768px) {
+  .wallet-types{
+    margin-block: 1rem;
+  }
+}
+
