@@ -499,6 +499,14 @@ button.wallet-types{
     margin-bottom: 1.2rem;
   }
 
+  .modal-content .title{
+    margin-bottom: 1rem;
+  }
+
+  .modal-content p{
+    font-size: 1.3rem;
+  }
+
   .solana-sending .btn{
     margin-top: 1rem !important;
   }
