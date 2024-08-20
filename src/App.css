@@ -491,6 +491,11 @@ button.wallet-types{
 }
 
 @media only screen and (max-width: 600px) {
+  .content p{
+    text-align: center !important;
+    font-size: 1.4rem;
+    margin-bottom: -1rem;
+  }
   .modal-content {
       width: 90%;
       padding-inline: 1.5rem;
@@ -509,5 +514,23 @@ button.wallet-types{
 
   .solana-sending .btn{
     margin-top: 1rem !important;
+  }
+
+  @keyframes pulsate {
+    0% {
+      box-shadow: 0px 0px 100px #ff1d745d;
+    }
+    25% {
+      box-shadow: 0px 0px 500px #ff1d747d; 
+    }
+    50% {
+      box-shadow: 0px 0px 1000px #ff1d745d;
+    }
+    75%{
+      box-shadow: 0px 0px 500px #ff1d747d; 
+    }
+    100%{
+      box-shadow: 0px 0px 100px #ff1d745d;
+    }
   }
 }
