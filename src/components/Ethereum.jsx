@@ -2,17 +2,18 @@ import { useState } from "react";
 import { mnemonicToSeed } from "bip39";
 import { Wallet, HDNodeWallet, ethers } from "ethers";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import ethLogo from "../assets/ethereum.png"; 
 
 const ALCHEMY_URL = "https://eth-mainnet.g.alchemy.com/v2/tzUaK--D07MarXAc5HqrjY3uoYKiz6lH";
 const provider = new ethers.JsonRpcProvider(ALCHEMY_URL);
 
-const Ethereum = ({ mnemonic }) => {
+const Ethereum = ({ mnemonic, icon }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [walletInfo, setWalletInfo] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [visibleSecretKey, setVisibleSecretKey] = useState(null);
 
     const createEthereumWallet = async () => {
+        setLoading(true);
         const seed = await mnemonicToSeed(mnemonic);
         const derivationPath = `m/44'/60'/${currentIndex}'/0'`;
         const hdNode = HDNodeWallet.fromSeed(seed);
@@ -33,6 +34,7 @@ const Ethereum = ({ mnemonic }) => {
 
         setCurrentIndex(currentIndex + 1);
         setWalletInfo([...walletInfo, walletInfoObj]);
+        setLoading(false);
     }
 
     const copyToClipboard = (text) => {
@@ -50,8 +52,8 @@ const Ethereum = ({ mnemonic }) => {
     return (
         <div className="wallet-container all-center">
             <button className="wallet-types" onClick={createEthereumWallet}>
-                <img src={ethLogo} alt="" className="crypto-logo" />
-                Add ETH Wallet
+                <img src={icon} alt="" className="crypto-logo" />
+                 {loading ? <>Adding Eth Wallet <div className="loader"></div></> : <>Add Eth Wallet</>}
             </button>
             <div className="row">
                 <div className="col-md-12">

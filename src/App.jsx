@@ -4,15 +4,21 @@ import { BsClipboard } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import sol from "../src/assets/solana.png";
+import eth from "../src/assets/ethereum.png";
 import Solana from "./components/Solana";
 import Ethereum from "./components/Ethereum";
+import Modal from "./components/Modal";
 
 function App() {
   const [mnemonic, setMnemonic] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const generateMn = async () => {
+    setLoading(true);
     const mn = await generateMnemonic();
     setMnemonic(mn);
+    setLoading(false);
   };
 
   const copyText = () => {
@@ -49,8 +55,8 @@ function App() {
             </button>
           </div> */}
           <div className="col-xl-12 col-lg-12 all-center mt-lg-0 mt-3">
-            <button className="btn btn-classy" onClick={generateMn} data-text="Generate Wallet">
-              Generate Wallet
+            <button className="btn btn-classy" onClick={generateMn} data-text={loading ? "Generating..." : "Generate Wallet"}>
+              Generate Wallet {loading && "Generating..."}
             </button>
           </div>
           <div className="col-12 mt-5">
@@ -78,10 +84,10 @@ function App() {
             </div>
             {mnemonic && <div className="row mt-5">
               <div className="col-md-6">
-                <Solana mnemonic={mnemonic}></Solana>
+                <Solana mnemonic={mnemonic} icon={sol}></Solana>
               </div>
               <div className="col-md-6">
-                <Ethereum mnemonic={mnemonic}></Ethereum>
+                <Ethereum mnemonic={mnemonic} icon={eth}></Ethereum>
               </div>
             </div>}
           </div>
