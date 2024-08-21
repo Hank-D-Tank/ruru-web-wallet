@@ -48,8 +48,8 @@ body{
 }
 
 .container-fluid{
-  background: url(../src/assets/bg.png) no-repeat;
-  background-size: 100%;
+  background: url(../src/assets/bg-2.png) no-repeat;
+  background-size: cover;
   min-height: 100vh;
   border: 1px solid #000;
   padding: 2rem 0;

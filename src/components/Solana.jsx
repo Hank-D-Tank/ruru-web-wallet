@@ -97,10 +97,18 @@ const Solana = ({ mnemonic, icon }) => {
 
         } catch (error) {
             console.error("Transaction failed", error);
-            toast.error("Transaction failed. Please try again.", {
-                className: "custom-toast",
-                bodyClassName: "custom-toast-body",
-            });
+            if(transferData.amount >= walletInfo[transferData.walletNo].balance){
+                toast.error("Transaction failed. Insufficient Balance", {
+                    className: "custom-toast",
+                    bodyClassName: "custom-toast-body",
+                });
+            }
+            else{
+                toast.error("Transaction failed. Please try again.", {
+                    className: "custom-toast",
+                    bodyClassName: "custom-toast-body",
+                });
+            }
             setTransferLoading(false);
         }
     };
